@@ -1,9 +1,19 @@
 package models
 
-import "database/sql"
+import (
+	"database/sql"
+
+	"github.com/htoomgt/go-gin-rest-api-tutorial/src/configs"
+)
 
 func getDbConnection() (dbC *sql.DB, err error) {
-	dbC, err = sql.Open("mysql", "root:abcd1234@tcp(127.0.0.1:3306)/db_test?parseTime=true")
+	var username = configs.MySQLDbUsername
+	var password = configs.MySQLDbPassword
+	var host = configs.MySQLDbHost
+	var port = configs.MySQLDbPort
+	var database = configs.MySQLDbNAME
+
+	dbC, err = sql.Open("mysql", username+":"+password+"@tcp("+host+":"+port+")/"+database+"?parseTime=true")
 	if err != nil {
 		return
 	}
