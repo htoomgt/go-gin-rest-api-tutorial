@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
 	"github.com/htoomgt/go-gin-rest-api-tutorial/src/models"
@@ -82,6 +83,35 @@ func AllPerson(c *gin.Context) {
 
 }
 
+/*PersonGetByID is a function to get person data by ID*/
+func PersonGetByID(c *gin.Context) {
+	var result gin.H
+	id := c.Param("id")
+
+	ID, err := strconv.Atoi(id)
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	p := models.Person{
+		ID: ID,
+	}
+	person, err := p.GetByID()
+	if err != nil {
+		result = gin.H{
+			"count":  0,
+			"result": nil,
+		}
+	} else {
+		result = gin.H{
+			"count":  1,
+			"result": person,
+		}
+	}
+	c.JSON(http.StatusOK, result)
+
+}
+
 func main() {
 	fmt.Println("Hello World!")
 
@@ -93,6 +123,7 @@ func main() {
 
 	r.GET("/store-person", StorePerson)
 	r.GET("/get-all-person", AllPerson)
+	r.GET("/person/:id", PersonGetByID)
 
 	r.Run(":8181")
 }

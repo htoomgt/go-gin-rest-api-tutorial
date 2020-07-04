@@ -1,10 +1,10 @@
-# First Go Gin Repository
+# My First Go Gin Repository
 
-The first go lan respository for rest api with gin frame with the help of youtube tutorial named [TutorialEdge](https://www.youtube.com/watch?v=RkmvVFZJJvs).
+The first go lan respository for rest api with gin framework with the help of youtube tutorial named [TutorialEdge](https://www.youtube.com/watch?v=RkmvVFZJJvs).
 
 ## To Test Run
 
-`go run src/*.go`
+At root directory run this `go run src/*.go`
 
 ## Reference
 

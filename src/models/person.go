@@ -1,18 +1,8 @@
 package models
 
 import (
-	"database/sql"
-
 	_ "github.com/go-sql-driver/mysql" //this package is loaded for database tasks
 )
-
-func getDbConnection() (dbC *sql.DB, err error) {
-	dbC, err = sql.Open("mysql", "root:abcd1234@tcp(127.0.0.1:3306)/db_test?parseTime=true")
-	if err != nil {
-		return
-	}
-	return
-}
 
 /*Person type strucutre for processing database and serialization*/
 type Person struct {
@@ -31,8 +21,8 @@ type Person struct {
 /*GetByID function retrives record by person id*/
 func (p Person) GetByID() (person Person, err error) {
 	db, err := getDbConnection()
-	row := db.QueryRow("SELECT id, first_name, last_name FROM tbl_persons WHERE id=?", p.ID)
-	err = row.Scan(&person.ID, &person.FirstName, &person.LastName)
+	row := db.QueryRow("SELECT id, first_name, last_name, email, gender, age, created_at, updated_at FROM tbl_persons WHERE id=?", p.ID)
+	err = row.Scan(&person.ID, &person.FirstName, &person.LastName, &person.Email, &person.Gender, &person.Age, &person.CreatedAt, &person.UpdatedAt)
 	if err != nil {
 		return
 	}
@@ -46,8 +36,8 @@ func (p Person) GetAll() (persons []Person, err error) {
 	if err != nil {
 		return
 	}
-	//var sqlStmt string = "SELECT id, first_name, last_name, email, gender, password, age, created_at, updated_at FROM tbl_persons"
-	rows, err := db.Query("SELECT id, first_name, last_name, email, gender, age, created_at, updated_at FROM tbl_persons")
+	var sqlStmt string = "SELECT id, first_name, last_name, email, gender, age, created_at, updated_at FROM tbl_persons"
+	rows, err := db.Query(sqlStmt)
 	if err != nil {
 		return
 	}
