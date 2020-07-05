@@ -8,7 +8,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-/*APIRoutes will be used for route separations*/
+/*APIRoutes will be used for API route separations*/
 type APIRoutes struct {
 }
 

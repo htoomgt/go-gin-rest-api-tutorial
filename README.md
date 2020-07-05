@@ -5,9 +5,10 @@ The first go lan respository for rest api with gin framework with the help of yo
 ## Expectations from developing
 
 - [x] To create a sample CRUD (Create, Retrieve, Update, Delete) with go using gin framework
+- [x] RESTful API is working here
 - [] To test run with MVC (Model-View-Controller) pattern for separation of concern
-- [x] To test separate route file
-- [] To render the HTML as view the records from database
+- [x] To test separate package route file (routes/api.go, routes/web.go)
+- [] To render the HTML template as a part of view displaying the records from database
 - [] To test no-blocking feature and speed of code
 - [] To test named query paramter at database query
 - [] Unit testing for developed features with gin testing
@@ -33,8 +34,8 @@ The first go lan respository for rest api with gin framework with the help of yo
 
 - GO v.1.11^ language is needed to install on the pc.
 - MySQL server that can be connected from your pc
-- Create database at mysql server with a name "db_test"
-- Run the tbl_persons.sql at query workspace file located at src/database/migrations/
+- Create database at mysql server with a name "db_test". `CREATE DATABASE db_test;`
+- Run the tbl_persons.sql at query workspace file located at `src/database/migrations/`
 
 ## To Test Run
 

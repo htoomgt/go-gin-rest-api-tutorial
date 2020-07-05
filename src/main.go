@@ -118,7 +118,7 @@ func main() {
 	fmt.Println("Hello World!")
 
 	r := gin.Default()
-	r.GET("/", HomePage)
+	// r.GET("/", HomePage)
 	r.POST("/", PostHomePage)
 	r.GET("/query", QueryStrings)            // /query?name=rick&age=32
 	r.GET("/path/:name/:age", PathParamters) // /path/rick/32
@@ -140,7 +140,11 @@ func main() {
 	})
 
 	var apiRoutes routes.APIRoutes
-	apiRoutes.RegisteredRoutes(r)
+	var webRoutes routes.WebRoutes
 
-	r.Run(":8181")
+	//loading the registered routes passing router engine
+	apiRoutes.RegisteredRoutes(r)
+	webRoutes.RegisteredRoutes(r)
+
+	r.Run(":8181") // web server run at port 8181
 }
