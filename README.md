@@ -4,9 +4,11 @@ The first go lan respository for rest api with gin framework with the help of yo
 
 ## Expectations
 
-- To create a sample CRUD with go using gin framework
-- To test run with MVC pattern for separation of concern
-- To test no-blocking feature and speed of code
+- [x] To create a sample CRUD (Create, Retrieve, Update, Delete) with go using gin framework
+- [] To test run with MVC (Model-View-Controller) pattern for separation of concern
+- [x] To test separate route file
+- [] To test no-blocking feature and speed of code
+- [] To test named query paramter at database query
 
 ## How to install Gin Web Framework
 
@@ -19,9 +21,9 @@ The first go lan respository for rest api with gin framework with the help of yo
 
 ## How to code from another package in golang
 
-- At import of go file import ***"module-name/package-name"*** or ***"module-name/dir-name/package-name"***
-- Example ***"github.com/htoomgt/go-gin-rest-api-tutorial/models"*** or ***"github.com/htoomgt/go-gin-rest-api-tutorial/src/models"***
-- And then ***package-name.FunctionName*** or ***package-name.VariableName***
+- At import of go file import `module-name/package-name` or `module-name/dir-name/package-name`
+- Example `github.com/htoomgt/go-gin-rest-api-tutorial/models` or `github.com/htoomgt/go-gin-rest-api-tutorial/src/models`
+- And then `package-name.FunctionName` or `package-name.VariableName`
 - Example `models.Person` or `configs.AppEnv`
 - Used CapticalCamel case for public visibility
 
@@ -51,3 +53,11 @@ The first go lan respository for rest api with gin framework with the help of yo
 9. Current date time in various formatting [link](https://www.golangprograms.com/get-current-date-and-time-in-various-format-in-golang.html)
 
 10. A tour of GO [link](https://tour.golang.org/list)
+
+11. Markdown syntax cheat sheet [link](https://www.markdownguide.org/cheat-sheet/)
+
+12. Add support for named input parameters in mysql query [link](https://github.com/go-sql-driver/mysql/issues/561)
+
+13. SQLX for mysql database query more efficient in coding [link](https://github.com/jmoiron/sqlx)
+
+14. Long query in go lang [link](https://stackoverflow.com/questions/36244767/long-queries-in-golang)
