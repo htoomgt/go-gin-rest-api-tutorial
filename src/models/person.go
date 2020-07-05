@@ -1,6 +1,8 @@
 package models
 
 import (
+	"time"
+
 	_ "github.com/go-sql-driver/mysql" //this package is loaded for database tasks
 )
 
@@ -52,19 +54,21 @@ func (p Person) GetAll() (persons []Person, err error) {
 
 }
 
-/*add()Person to insert a person to database table*/
-func (p Person) add() (ID int, err error) {
+/*Add is a function to insert a person to database table*/
+func (p Person) Add() (ID int, err error) {
 	db, err := getDbConnection()
+	dt := time.Now()
+	nowDt := dt.Format("2006-01-02 15:04:05")
 	if err != nil {
 		return
 	}
 
-	stmt, err := db.Prepare("INSERT INTO tbl_psersons (first_name, last_name) VALUES(?, ?)")
+	stmt, err := db.Prepare("INSERT INTO tbl_persons (first_name, last_name, email, password, gender, age, confirmed, created_at) VALUES(?, ?, ?, ?, ?, ?, ?, ?)")
 	if err != nil {
 		return
 	}
 
-	rs, err := stmt.Exec(p.FirstName, p.LastName)
+	rs, err := stmt.Exec(p.FirstName, p.LastName, p.Email, p.Password, p.Gender, p.Age, false, nowDt)
 	if err != nil {
 		return
 	}

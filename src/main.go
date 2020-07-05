@@ -6,6 +6,7 @@ import (
 	"log"
 	"net/http"
 	"strconv"
+	"time"
 
 	"github.com/gin-gonic/gin"
 	"github.com/htoomgt/go-gin-rest-api-tutorial/src/models"
@@ -58,13 +59,6 @@ func PathParamters(c *gin.Context) {
 	})
 }
 
-/*StorePerson is a controller function wit GET method
-to store a person into mysql database*/
-func StorePerson(c *gin.Context) {
-	//body := c.Request.Body
-
-}
-
 /*AllPerson is a controller function wit GET method
 to get all person into mysql database*/
 func AllPerson(c *gin.Context) {
@@ -112,6 +106,28 @@ func PersonGetByID(c *gin.Context) {
 
 }
 
+/*StorePerson is a controller function wit GET method
+to store a person into mysql database*/
+func StorePerson(c *gin.Context) {
+	var p models.Person
+	err := c.Bind(&p)
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	ID, err := p.Add()
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	fmt.Println(ID)
+	name := p.FirstName + " " + p.LastName
+	c.JSON(http.StatusOK, gin.H{
+		"message": fmt.Sprintf(" %s successfully created", name),
+	})
+
+}
+
 func main() {
 	fmt.Println("Hello World!")
 
@@ -121,9 +137,20 @@ func main() {
 	r.GET("/query", QueryStrings)            // /query?name=rick&age=32
 	r.GET("/path/:name/:age", PathParamters) // /path/rick/32
 
-	r.GET("/store-person", StorePerson)
-	r.GET("/get-all-person", AllPerson)
+	r.POST("/person", StorePerson)
+	r.GET("/persons", AllPerson)
 	r.GET("/person/:id", PersonGetByID)
+
+	r.GET("/getCurrentTime", func(c *gin.Context) {
+		dt := time.Now()
+		nowDt := dt.Format("2006-01-02 15:04:05")
+
+		fmt.Println("Current Date Time is ")
+
+		c.JSON(http.StatusOK, gin.H{
+			"current date time is ": nowDt,
+		})
+	})
 
 	r.Run(":8181")
 }

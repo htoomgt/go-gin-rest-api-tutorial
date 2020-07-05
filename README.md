@@ -21,3 +21,7 @@ At root directory run this `go run src/*.go`
 6. How to create mysql table [link](https://www.mysqltutorial.org/mysql-create-table/)
 
 7. Golang cannot find package gin in sub directory [link](https://stackoverflow.com/questions/51488385/golang-can-not-find-package-gin-in-sub-directory)
+
+8. How to get current datetime in golang by Rahul on August, 13th, 2018 [link](https://tecadmin.net/get-current-date-time-golang/)
+
+9. Current date time in various formatting [link](https://www.golangprograms.com/get-current-date-and-time-in-various-format-in-golang.html)
