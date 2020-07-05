@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS `tbl_persons`(
     `gender` VARCHAR(6) NULL,
     `age` INT NULL,
     `password` VARCHAR(128) NULL,
-    `confirmed` BOOLEAN NULL,
+    `confirmed` BOOLEAN DEFAULT FALSE,
     `created_at` DATETIME NULL,
     `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP
     

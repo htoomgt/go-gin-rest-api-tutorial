@@ -2,13 +2,15 @@
 
 The first go lan respository for rest api with gin framework with the help of youtube tutorial named [TutorialEdge](https://www.youtube.com/watch?v=RkmvVFZJJvs).
 
-## Expectations
+## Expectations from developing
 
 - [x] To create a sample CRUD (Create, Retrieve, Update, Delete) with go using gin framework
 - [] To test run with MVC (Model-View-Controller) pattern for separation of concern
 - [x] To test separate route file
+- [] To render the HTML as view the records from database
 - [] To test no-blocking feature and speed of code
 - [] To test named query paramter at database query
+- [] Unit testing for developed features with gin testing
 
 ## How to install Gin Web Framework
 
@@ -19,13 +21,20 @@ The first go lan respository for rest api with gin framework with the help of yo
 - Run this `go mod init`
 - That will create go.mod and can set the module name at go.mode. `module github.com/username/app-name`
 
-## How to code from another package in golang
+## How to call method or variable from another package in golang
 
 - At import of go file import `module-name/package-name` or `module-name/dir-name/package-name`
 - Example `github.com/htoomgt/go-gin-rest-api-tutorial/models` or `github.com/htoomgt/go-gin-rest-api-tutorial/src/models`
 - And then `package-name.FunctionName` or `package-name.VariableName`
 - Example `models.Person` or `configs.AppEnv`
 - Used CapticalCamel case for public visibility
+
+## Prerequisite
+
+- GO v.1.11^ language is needed to install on the pc.
+- MySQL server that can be connected from your pc
+- Create database at mysql server with a name "db_test"
+- Run the tbl_persons.sql at query workspace file located at src/database/migrations/
 
 ## To Test Run
 
@@ -61,3 +70,5 @@ The first go lan respository for rest api with gin framework with the help of yo
 13. SQLX for mysql database query more efficient in coding [link](https://github.com/jmoiron/sqlx)
 
 14. Long query in go lang [link](https://stackoverflow.com/questions/36244767/long-queries-in-golang)
+
+15. Unit test for TDD [link](https://semaphoreci.com/community/tutorials/test-driven-development-of-go-web-applications-with-gin)
