@@ -8,6 +8,10 @@ import (
 	"strconv"
 	"time"
 
+	"github.com/htoomgt/go-gin-rest-api-tutorial/src/routes"
+
+	"github.com/htoomgt/go-gin-rest-api-tutorial/src/controllers"
+
 	"github.com/gin-gonic/gin"
 	"github.com/htoomgt/go-gin-rest-api-tutorial/src/models"
 )
@@ -57,24 +61,6 @@ func PathParamters(c *gin.Context) {
 		"name": name,
 		"age":  age,
 	})
-}
-
-/*AllPerson is a controller function wit GET method
-to get all person into mysql database*/
-func AllPerson(c *gin.Context) {
-	var persons []models.Person
-	p := models.Person{}
-
-	persons, err := p.GetAll()
-	if err != nil {
-		log.Fatalln(err)
-	}
-
-	c.JSON(http.StatusOK, gin.H{
-		"result": persons,
-		"count":  len(persons),
-	})
-
 }
 
 /*PersonGetByID is a function to get person data by ID*/
@@ -137,8 +123,9 @@ func main() {
 	r.GET("/query", QueryStrings)            // /query?name=rick&age=32
 	r.GET("/path/:name/:age", PathParamters) // /path/rick/32
 
+	var personCtl controllers.PersonCtl
 	r.POST("/person", StorePerson)
-	r.GET("/persons", AllPerson)
+	r.GET("/persons", personCtl.GetAll)
 	r.GET("/person/:id", PersonGetByID)
 
 	r.GET("/getCurrentTime", func(c *gin.Context) {
@@ -151,6 +138,9 @@ func main() {
 			"current date time is ": nowDt,
 		})
 	})
+
+	var apiRoutes routes.APIRoutes
+	apiRoutes.RegisteredRoutes(r)
 
 	r.Run(":8181")
 }
